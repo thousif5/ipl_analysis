@@ -43,7 +43,26 @@ function extraRuns(year) {
             parseInt(deliveries[i]["extra_runs"]) : extraRuns[deliveries[i]["bowling_team"]] = parseInt(deliveries[i]["extra_runs"]);
         }
     }
-    console.log(extraRuns);
+    // var xtraR=JSON.stringify(extraRuns);
+    // console.log(xtraR);
+    var arr = [];
+     for (var i in extraRuns) {
+       var obj = {};
+       obj["name"] = i;
+       obj["y"] = extraRuns[i];
+       arr.push(obj);
+     }
+     console.log(arr);
+     require("fs").writeFile(
+       "./jsonFiles/extraRunsConceded.json",
+       JSON.stringify(arr, null, 4),
+       err => {
+         if (err) {
+           console.log(err);
+           return;
+         }
+       }
+     )
 }
 
 // console.log("Extra runs conceded per team in the year of 2016");

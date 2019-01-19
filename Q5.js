@@ -59,8 +59,27 @@ function topTenBatsmen(year) {
     for (var j=0;j<10;j++) {
       topTenBats[topSort[j][0]]=topSort[j][1];
     }
-    console.log(topTenBats);
-
+    // var topB=JSON.stringify(topTenBats);
+    // console.log(topB);
+    
+    var arr = [];
+     for (var i in topTenBats) {
+       var obj = {};
+       obj["name"] = i;
+       obj["y"] = topTenBats[i];
+       arr.push(obj);
+     }
+     console.log(arr);
+     require("fs").writeFile(
+       "./jsonFiles/topTenBatsmen.json",
+       JSON.stringify(arr, null, 4),
+       err => {
+         if (err) {
+           console.log(err);
+           return;
+         }
+       }
+     )
 
 }
 

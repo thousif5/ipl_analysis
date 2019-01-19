@@ -34,7 +34,28 @@ function noOfMatches() {
  for(var i in matches) {
    (obj1.hasOwnProperty(matches[i].season)) ? obj1[matches[i].season]++ : obj1[matches[i].season] = 1;
 }
-console.log(obj1);
+//console.log(obj1);
+//  var nom = JSON.stringify(obj1);
+// console.log(nom);
+var arr = [];
+     for (var i in obj1) {
+       var obj = {};
+       obj["name"] = i;
+       obj["y"] = obj1[i];
+       arr.push(obj);
+     }
+     console.log(arr);
+     require("fs").writeFile(
+       "./jsonFiles/matchesWonPerYear.json",
+       JSON.stringify(arr, null, 4),
+       err => {
+         if (err) {
+           console.log(err);
+           return;
+         }
+       }
+     )
+
 }
 
 

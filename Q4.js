@@ -84,9 +84,28 @@ function theEconomicBowlers (year) {
     for (var j=0;j<10;j++) {
       topTen[toSort[j][0]]=toSort[j][1];
     }
-    console.log(topTen);
+    // var topT=JSON.stringify(topTen);
+    // console.log(topT);
     //  console.log(bowlers);
     // console.log(bowlersRuns);
+    var arr = [];
+     for (var i in topTen) {
+       var obj = {};
+       obj["name"] = i;
+       obj["y"] = topTen[i];
+       arr.push(obj);
+     }
+     console.log(arr);
+     require("fs").writeFile(
+       "./jsonFiles/topTenEconomic.json",
+       JSON.stringify(arr, null, 4),
+       err => {
+         if (err) {
+           console.log(err);
+           return;
+         }
+       }
+     )
 }
 
 // console.log("Top ten economic bowlers in the year of 2015");

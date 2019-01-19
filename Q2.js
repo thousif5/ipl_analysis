@@ -38,7 +38,26 @@ function teamsWinCount() {
          else winCount[matches[i]["winner"]] = {};
     }
     }
-    console.log(winCount);
+    // var winC=JSON.stringify(winCount);
+    // console.log(winC);
+    var arr = [];
+     for (var i in winCount) {
+       var obj = {};
+       obj["name"] = i;
+       obj["y"] = winCount[i];
+       arr.push(obj);
+     }
+     console.log(arr);
+     require("fs").writeFile(
+       "./jsonFiles/matchesWonPerYear.json",
+       JSON.stringify(arr, null, 4),
+       err => {
+         if (err) {
+           console.log(err);
+           return;
+         }
+       }
+     )
 }
 
 // console.log("Stacked bar chart of matches won of all teams over all the years of IPL");
